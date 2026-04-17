@@ -1,0 +1,727 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Come Sit With Me: a welcoming invitation from St. James Lutheran Church in Folsom, New Jersey.">
+<meta name="theme-color" content="#0e0b06">
+<meta property="og:title" content="Come Sit With Me — St. James Lutheran Church">
+<meta property="og:description" content="A welcoming invitation from St. James Lutheran Church in Folsom, New Jersey.">
+<meta property="og:type" content="website">
+<title>Come Sit With Me — St. James Lutheran Church</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --gold-dim: rgba(201,168,76,0.15);
+    --deep: #0e0b06;
+    --warm-dark: #1a1208;
+    --parchment: #fdf6e8;
+    --text: #2a1a08;
+    --muted: #7a6040;
+    --r1: #e63946;
+    --r2: #f4a261;
+    --r3: #2a9d8f;
+    --r4: #457b9d;
+    --r5: #6a4c93;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    color: var(--parchment);
+    overflow-x: hidden;
+  }
+
+  a { color: inherit; }
+
+  .skip-link {
+    position: absolute;
+    top: -40px;
+    left: 1rem;
+    background: var(--parchment);
+    color: var(--text);
+    padding: 0.6rem 0.9rem;
+    z-index: 1000;
+    text-decoration: none;
+  }
+
+  .skip-link:focus-visible {
+    top: 1rem;
+  }
+
+  a:focus-visible {
+    outline: 2px solid var(--gold);
+    outline-offset: 3px;
+  }
+
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 3rem 2rem;
+    position: relative;
+    background:
+      radial-gradient(ellipse at 30% 40%, rgba(201,168,76,0.07) 0%, transparent 55%),
+      radial-gradient(ellipse at 70% 70%, rgba(106,76,147,0.08) 0%, transparent 55%),
+      var(--deep);
+  }
+
+  .rainbow-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--r1), var(--r2), #f9c74f, var(--r3), var(--r4), var(--r5));
+    z-index: 100;
+  }
+
+  .hero-cross {
+    font-size: 2.2rem;
+    color: var(--gold);
+    opacity: 0.6;
+    margin-bottom: 2rem;
+    animation: glow 4s ease-in-out infinite alternate;
+  }
+
+  @keyframes glow {
+    from { opacity: 0.4; text-shadow: 0 0 10px rgba(201,168,76,0.2); }
+    to   { opacity: 0.8; text-shadow: 0 0 30px rgba(201,168,76,0.5); }
+  }
+
+  .hero-title {
+    font-size: clamp(3.2rem, 10vw, 5.5rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.1;
+    color: var(--parchment);
+    margin-bottom: 0.6rem;
+    animation: fadeUp 1.2s ease both;
+  }
+
+  .hero-title em {
+    color: var(--gold);
+    font-style: italic;
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .hero-attribution {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    animation: fadeUp 1.4s ease both;
+    opacity: 0.8;
+  }
+
+  .hero-verse {
+    font-size: 1.15rem;
+    font-style: italic;
+    color: rgba(253,246,232,0.7);
+    max-width: 480px;
+    line-height: 1.8;
+    margin-bottom: 3rem;
+    animation: fadeUp 1.6s ease both;
+  }
+
+  .hero-verse span {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 0.6rem;
+    font-style: normal;
+  }
+
+  .scroll-cta {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: fadeUp 1.8s ease both;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .scroll-cta-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.3em;
+    color: var(--muted);
+    text-transform: uppercase;
+  }
+
+  .scroll-arrow {
+    color: var(--gold);
+    font-size: 1.4rem;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(6px); }
+  }
+
+  .card-section {
+    padding: 0 1.5rem 4rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .card {
+    background: var(--parchment);
+    color: var(--text);
+    max-width: 680px;
+    width: 100%;
+    box-shadow: 0 40px 100px rgba(0,0,0,0.7);
+    position: relative;
+  }
+
+  .card-rainbow-top {
+    height: 5px;
+    background: linear-gradient(90deg, var(--r1), var(--r2), #f9c74f, var(--r3), var(--r4), var(--r5));
+  }
+
+  .card-rainbow-bottom {
+    height: 4px;
+    background: linear-gradient(90deg, var(--r5), var(--r4), var(--r3), #f9c74f, var(--r2), var(--r1));
+  }
+
+  .card-inner {
+    padding: 3.5rem 4rem 3rem;
+    background-image:
+      radial-gradient(ellipse at top right, rgba(201,168,76,0.06) 0%, transparent 60%),
+      radial-gradient(ellipse at bottom left, rgba(201,168,76,0.04) 0%, transparent 60%);
+  }
+
+  .church-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.25em;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 0.4rem;
+  }
+
+  .divider-cross {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.3rem;
+  }
+
+  .divider-cross .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .cross-sym {
+    color: var(--gold);
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+  }
+
+  .card-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    text-align: center;
+    line-height: 1.15;
+    margin-bottom: 0.4rem;
+  }
+
+  .card-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold-light), var(--gold), var(--gold-light), transparent);
+    margin-bottom: 2rem;
+  }
+
+  .body-text {
+    font-size: 1.07rem;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 1.3rem;
+  }
+
+  .body-text em { font-style: italic; }
+
+  .scripture {
+    border-left: 3px solid var(--gold);
+    padding: 0.9rem 1.4rem;
+    margin: 1.8rem 0;
+    background: rgba(201,168,76,0.06);
+    position: relative;
+  }
+
+  .scripture::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.5rem;
+    left: 0.7rem;
+    font-size: 3rem;
+    color: var(--gold);
+    opacity: 0.35;
+    font-family: Georgia, serif;
+    line-height: 1;
+  }
+
+  .scripture-text {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.75;
+    margin-bottom: 0.4rem;
+  }
+
+  .scripture-ref {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.2em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .section-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin: 2.2rem 0 1.2rem;
+  }
+
+  .section-label::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, var(--gold-light), transparent);
+  }
+
+  .closing-block {
+    text-align: center;
+    padding: 1.5rem 0 0.5rem;
+    border-top: 1px solid rgba(201,168,76,0.2);
+    margin-top: 2rem;
+  }
+
+  .closing-text {
+    font-size: 1.05rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.9;
+    margin-bottom: 1.2rem;
+  }
+
+  .contact-box {
+    border: 1px solid var(--gold-light);
+    padding: 1.3rem 1.5rem;
+    background: rgba(201,168,76,0.05);
+    text-align: center;
+    margin-top: 1.5rem;
+  }
+
+  .contact-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .contact-text {
+    font-size: 0.95rem;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 0.5rem;
+  }
+
+  .contact-detail {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.13em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.8;
+  }
+
+  .contact-detail a {
+    color: var(--muted);
+    text-decoration: none;
+  }
+
+  .between {
+    text-align: center;
+    padding: 3.5rem 2rem;
+    position: relative;
+  }
+
+  .between-line {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+    margin: 0 auto 1.2rem;
+  }
+
+  .between-symbol {
+    color: var(--gold);
+    font-size: 1.6rem;
+    opacity: 0.5;
+    margin-bottom: 1rem;
+  }
+
+  .between-text {
+    font-size: 1.1rem;
+    font-style: italic;
+    color: rgba(253,246,232,0.45);
+    max-width: 360px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  .pathways {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 1.2rem 0 1.5rem;
+  }
+
+  .pathway-card {
+    border: 1px solid var(--gold-light);
+    padding: 1.1rem 1.2rem;
+    background: rgba(201,168,76,0.04);
+  }
+
+  .pathway-icon { font-size: 1.3rem; margin-bottom: 0.5rem; }
+
+  .pathway-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .pathway-text {
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: var(--text);
+  }
+
+  .song-category { margin-bottom: 1.5rem; }
+
+  .song-category-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+    padding-bottom: 0.3rem;
+    border-bottom: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .song-item {
+    display: flex;
+    align-items: baseline;
+    gap: 0.7rem;
+    padding: 0.4rem 0;
+    border-bottom: 1px dotted rgba(201,168,76,0.15);
+  }
+
+  .song-item:last-child { border-bottom: none; }
+  .song-bullet { color: var(--gold); font-size: 0.55rem; flex-shrink: 0; }
+  .song-title { font-size: 0.98rem; color: var(--text); font-style: italic; flex: 1; }
+  .song-note { font-size: 0.75rem; color: var(--muted); font-family: 'Cinzel', serif; letter-spacing: 0.07em; }
+
+  .footer {
+    text-align: center;
+    padding: 3rem 2rem;
+  }
+
+  .footer-cross {
+    color: var(--gold);
+    font-size: 1.5rem;
+    opacity: 0.4;
+    margin-bottom: 1rem;
+  }
+
+  .footer-text {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.25em;
+    color: rgba(253,246,232,0.25);
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 600px) {
+    .card-inner { padding: 2.5rem 1.8rem 2rem; }
+    .pathways { grid-template-columns: 1fr; }
+  }
+  </style>
+</head>
+<body>
+<a class="skip-link" href="#main-content">Skip to content</a>
+<div class="rainbow-bar" aria-hidden="true"></div>
+
+<main id="main-content">
+<section class="hero" aria-labelledby="page-title">
+  <div class="hero-cross" aria-hidden="true">✝</div>
+  <h1 class="hero-title" id="page-title">Come Sit<br>With <em>Me.</em></h1>
+  <div class="hero-attribution">— Jesus of Nazareth</div>
+  <div class="hero-verse">
+    Come to me, all you who are weary and burdened, and I will give you rest.
+    <span>Matthew 11:28</span>
+  </div>
+  <a href="#welcome" class="scroll-cta" aria-label="Jump to the welcome letter">
+    <span class="scroll-cta-text">Read on</span>
+    <span class="scroll-arrow" aria-hidden="true">↓</span>
+  </a>
+</section>
+
+<section class="card-section" id="welcome" aria-labelledby="welcome-title">
+  <div class="card">
+    <div class="card-rainbow-top" aria-hidden="true"></div>
+    <div class="card-inner">
+      <div class="church-name">St. James Lutheran Church · Folsom, NJ</div>
+      <div class="divider-cross" aria-hidden="true">
+        <div class="line"></div>
+        <div class="cross-sym">✦ ✝ ✦</div>
+        <div class="line"></div>
+      </div>
+
+      <h2 class="card-title" id="welcome-title">You Have Always<br>Been Beloved</h2>
+      <div class="card-subtitle">A letter carried by his people · written in his name</div>
+      <div class="divider" aria-hidden="true"></div>
+
+      <p class="body-text">Dear friend,</p>
+
+      <p class="body-text">
+        This letter comes to you from the people of St. James — but we want to be honest about where it originates. It doesn't begin with us. It begins with the one who looked at crowds the religious establishment had turned away, sat down among them, and said simply: <em>come.</em>
+      </p>
+
+      <div class="scripture">
+        <div class="scripture-text">The Spirit and the bride say, "Come." And let the one who hears say, "Come." Let the one who is thirsty come; and let the one who wishes take the free gift of the water of life.</div>
+        <div class="scripture-ref">Revelation 22:17</div>
+      </div>
+
+      <p class="body-text">
+        The Bride of Christ — the Church — is meant to carry that same word into the world. And we must confess honestly: she has not always done so. Many of you were turned away. You were handed condemnation instead of communion. That was not Christ. And we are sorry for it.
+      </p>
+
+      <p class="body-text">
+        But here is the deeper truth we are coming to you with today: <em>the Church is incomplete without you.</em> Not simply willing to accommodate you — incomplete without you. Your voice, your story, your presence at the table is something the Body of Christ has been missing. We are not offering charity. We are confessing a poverty in ourselves that your belonging would help to heal.
+      </p>
+
+      <div class="scripture">
+        <div class="scripture-text">There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.</div>
+        <div class="scripture-ref">Galatians 3:28</div>
+      </div>
+
+      <p class="body-text">
+        At the center of our worship is the Lord's Supper — communion. We believe, with Luther and with the ancient Church, that Christ is <em>truly and fully present</em> in the bread and the wine. Not symbolically. Not metaphorically. Present. And he reveals himself in that meal in community — when people who would not otherwise sit together break bread as one. The table is richer, the presence is fuller, when all of his beloved are gathered at it.
+      </p>
+
+      <div class="scripture">
+        <div class="scripture-text">For I was hungry and you gave me something to eat, I was thirsty and you gave me something to drink, I was a stranger and you invited me in.</div>
+        <div class="scripture-ref">Matthew 25:35</div>
+      </div>
+
+      <p class="body-text">
+        You may be carrying wounds from religion. You may have walked away from faith entirely, or held onto it quietly in the dark where no one could tell you it wasn't allowed. You may be full of questions or full of grief or simply curious what it might feel like to walk into a room where you don't have to choose between who you are and whether you belong.
+      </p>
+
+      <p class="body-text">
+        Come and see. Come weary. Come uncertain. Come exactly as you are. The table is already set. The bread is already broken. And Christ is already there — waiting for the rest of his beloved to take their place.
+      </p>
+
+      <div class="scripture">
+        <div class="scripture-text">Behold, I stand at the door and knock. If anyone hears my voice and opens the door, I will come in and eat with that person, and they with me.</div>
+        <div class="scripture-ref">Revelation 3:20</div>
+      </div>
+
+      <div class="closing-block">
+        <div class="closing-text">
+          With open hands and an open table,<br>
+          <em>The People of St. James Lutheran Church</em><br><br>
+          Celebrating 175+ years of ministry<br>
+          A Reconciling in Christ congregation —<br>
+          where <em>all</em> means all, and the table belongs to him.
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-label">Worship With Us</div>
+          <div class="contact-text">
+            Sunday worship at 10 AM · Wednesday evenings at 7 PM<br>
+            Also available via Zoom — worship from wherever you are.
+          </div>
+          <div class="contact-detail">
+            1341 Mays Landing Road, Folsom, NJ 08037<br>
+            <a href="tel:+16095614488">(609) 561-4488</a> · <a href="https://www.stjamesfolsom.org" rel="noopener noreferrer">stjamesfolsom.org</a><br>
+            Pastor Werner · <a href="tel:+16093353083">(609) 335-3083</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-rainbow-bottom" aria-hidden="true"></div>
+  </div>
+</section>
+
+<div class="between" aria-hidden="true">
+  <div class="between-line"></div>
+  <div class="between-symbol">♪</div>
+  <div class="between-text">
+    The Bride has been singing incomplete.<br>She is waiting for the rest of her voices.
+  </div>
+</div>
+
+<section class="card-section" id="choir" aria-labelledby="choir-title">
+  <div class="card">
+    <div class="card-rainbow-top" aria-hidden="true"></div>
+    <div class="card-inner">
+      <div class="church-name">St. James Lutheran Church · Folsom, NJ</div>
+      <div class="divider-cross" aria-hidden="true">
+        <div class="line"></div>
+        <div class="cross-sym">✦ ✝ ✦</div>
+        <div class="line"></div>
+      </div>
+
+      <h2 class="card-title" id="choir-title">Lift Every Voice</h2>
+      <div class="card-subtitle">A call to the queer community to come and sing</div>
+      <div class="divider" aria-hidden="true"></div>
+
+      <p class="body-text">
+        The Church has a voice. But she has been singing with empty chairs in the choir loft — because some of her most gifted, most Spirit-filled singers were told there was no room for them. That was wrong. The congregation is incomplete for it.
+      </p>
+
+      <p class="body-text">
+        We believe the Holy Spirit dwells more fully in a community when that community gathers in wholeness — diverse voices, full presence, honest worship. When the queer community lifts its voice alongside every other voice, something happens in that room that cannot happen any other way. We are not inviting you to fill a vacancy. We are telling you that your voice carries something the rest of us need to hear.
+      </p>
+
+      <div class="scripture">
+        <div class="scripture-text">Sing to the Lord a new song; sing to the Lord, all the earth.</div>
+        <div class="scripture-ref">Psalm 96:1</div>
+      </div>
+
+      <div class="section-label">Songs We Sing Together</div>
+
+      <div class="song-category">
+        <div class="song-category-label">Hymns of the Tradition</div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">A Mighty Fortress Is Our God</span><span class="song-note">Luther, 1529</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Here I Am, Lord</span><span class="song-note">Schutte, 1981</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Come Thou Fount of Every Blessing</span><span class="song-note">Robinson, 1758</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Abide With Me</span><span class="song-note">Lyte, 1847</span></div>
+      </div>
+
+      <div class="song-category">
+        <div class="song-category-label">Gospel, Spirituals & Freedom Songs</div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Lift Every Voice and Sing</span><span class="song-note">Johnson, 1900</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Wade in the Water</span><span class="song-note">Traditional Spiritual</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Total Praise</span><span class="song-note">Smallwood, 1996</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">We Shall Overcome</span><span class="song-note">Freedom Song</span></div>
+      </div>
+
+      <div class="song-category">
+        <div class="song-category-label">Contemporary Worship</div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Goodness of God</span><span class="song-note">Johnson & Ingram, 2018</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Way Maker</span><span class="song-note">Sinach, 2015</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Build My Life</span><span class="song-note">Kaple & Barrett, 2016</span></div>
+        <div class="song-item"><span class="song-bullet">♦</span><span class="song-title">Cornerstone</span><span class="song-note">Hillsong, 2012</span></div>
+      </div>
+
+      <div class="section-label">Ways to Participate</div>
+
+      <div class="pathways">
+        <div class="pathway-card">
+          <div class="pathway-icon" aria-hidden="true">🎵</div>
+          <div class="pathway-title">Join the Choir</div>
+          <div class="pathway-text">Sing with us Sunday mornings. No audition. No requirement but a willing heart.</div>
+        </div>
+        <div class="pathway-card">
+          <div class="pathway-icon" aria-hidden="true">✨</div>
+          <div class="pathway-title">Pride Season Event</div>
+          <div class="pathway-text">A one-time gathering this season — one voice, one song. Come try it once.</div>
+        </div>
+        <div class="pathway-card">
+          <div class="pathway-icon" aria-hidden="true">🌱</div>
+          <div class="pathway-title">Something New</div>
+          <div class="pathway-text">We are open to forming a new ensemble — born from this community, with its own story.</div>
+        </div>
+        <div class="pathway-card">
+          <div class="pathway-icon" aria-hidden="true">🕊️</div>
+          <div class="pathway-title">Just Come Listen</div>
+          <div class="pathway-text">Not ready to sing? Come sit. Let the music hold you. That is enough.</div>
+        </div>
+      </div>
+
+      <div class="scripture">
+        <div class="scripture-text">Let everything that has breath praise the Lord.</div>
+        <div class="scripture-ref">Psalm 150:6</div>
+      </div>
+
+      <div class="closing-block">
+        <div class="closing-text">
+          The Spirit is looking for a dwelling place among his people.<br>
+          Your voice helps build that home.<br><br>
+          <em>Whenever you are ready. However you choose to come.</em>
+        </div>
+
+        <div class="contact-box">
+          <div class="contact-label">Connect With Us</div>
+          <div class="contact-text">
+            Speak with anyone at our booth today — no commitment, just conversation.
+          </div>
+          <div class="contact-detail">
+            1341 Mays Landing Road, Folsom, NJ 08037<br>
+            <a href="tel:+16095614488">(609) 561-4488</a> · <a href="https://www.stjamesfolsom.org" rel="noopener noreferrer">stjamesfolsom.org</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-rainbow-bottom" aria-hidden="true"></div>
+  </div>
+</section>
+</main>
+
+<footer class="footer">
+  <div class="footer-cross" aria-hidden="true">✝</div>
+  <div class="footer-text">St. James Lutheran Church · Folsom, NJ · Reconciling in Christ · Welcoming All in Love</div>
+</footer>
+</body>
+</html>
