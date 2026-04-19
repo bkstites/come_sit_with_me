@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QR Card — St. James Lutheran Church</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #c9a84c;
+    --gold-light: #e8d5a3;
+    --deep: #0e0b06;
+    --parchment: #fdf6e8;
+    --text: #2a1a08;
+    --muted: #7a6040;
+    --r1: #e63946; --r2: #f4a261; --r3: #2a9d8f; --r4: #457b9d; --r5: #6a4c93;
+  }
+
+  body {
+    background: #d0c8b8;
+    font-family: 'Cormorant Garamond', Georgia, serif;
+    padding: 3rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3rem;
+  }
+
+  /* Ask browser to preserve fills/gradients during print rendering. */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .print-note {
+    font-family: 'Cinzel', sans-serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.2em;
+    color: #666;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: -1rem;
+  }
+
+  /* Card is 3.5 x 2 inches at 96dpi = 336 x 192px. We'll scale up 2.5x for screen. */
+  .card-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+  }
+
+  .card-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.6rem;
+    letter-spacing: 0.25em;
+    color: #888;
+    text-transform: uppercase;
+  }
+
+  .card {
+    width: 630px;
+    height: 360px;
+    position: relative;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.25), 0 0 0 1px rgba(0,0,0,0.1);
+    overflow: hidden;
+  }
+
+  /* ─── FRONT ─── */
+  .front {
+    background: var(--deep);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 2.5rem;
+    position: relative;
+  }
+
+  .front-rainbow-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, var(--r1), var(--r2), #f9c74f, var(--r3), var(--r4), var(--r5));
+  }
+
+  .front-rainbow-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--r5), var(--r4), var(--r3), #f9c74f, var(--r2), var(--r1));
+  }
+
+  .front-glow {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    height: 200px;
+    background: radial-gradient(ellipse, rgba(201,168,76,0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .front-cross {
+    font-size: 1.5rem;
+    color: var(--gold);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+    position: relative;
+  }
+
+  .front-title {
+    font-size: 3rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--parchment);
+    line-height: 1.1;
+    margin-bottom: 0.4rem;
+    position: relative;
+  }
+
+  .front-title em { color: var(--gold); }
+
+  .front-attr {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.3em;
+    color: rgba(201,168,76,0.65);
+    text-transform: uppercase;
+    margin-bottom: 1.2rem;
+    position: relative;
+  }
+
+  .front-divider {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    margin-bottom: 1.2rem;
+    width: 260px;
+    position: relative;
+  }
+
+  .front-divider .line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201,168,76,0.4), transparent);
+  }
+
+  .front-divider-sym {
+    color: rgba(201,168,76,0.4);
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+  }
+
+  .front-church {
+    font-family: 'Cinzel', serif;
+    font-size: 0.55rem;
+    letter-spacing: 0.2em;
+    color: rgba(253,246,232,0.35);
+    text-transform: uppercase;
+    position: relative;
+  }
+
+  /* ─── BACK ─── */
+  .back {
+    background: var(--parchment);
+    display: flex;
+    flex-direction: row;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .back-rainbow-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--r1), var(--r2), #f9c74f, var(--r3), var(--r4), var(--r5));
+  }
+
+  .back-rainbow-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--r5), var(--r4), var(--r3), #f9c74f, var(--r2), var(--r1));
+  }
+
+  .back-left {
+    flex: 1;
+    padding: 2rem 1.5rem 1.8rem 2rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 1px solid rgba(201,168,76,0.25);
+  }
+
+  .back-right {
+    width: 190px;
+    padding: 1.8rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+  }
+
+  .back-church-name {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    text-transform: uppercase;
+    margin-bottom: 0.6rem;
+  }
+
+  .back-title {
+    font-size: 1.45rem;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.2;
+    margin-bottom: 0.8rem;
+  }
+
+  .back-verse {
+    font-size: 0.82rem;
+    font-style: italic;
+    color: var(--text);
+    line-height: 1.65;
+    border-left: 2px solid var(--gold);
+    padding-left: 0.7rem;
+    margin-bottom: 1rem;
+    opacity: 0.85;
+  }
+
+  .back-verse-ref {
+    display: block;
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.18em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-top: 0.35rem;
+    font-style: normal;
+  }
+
+  .back-contact {
+    font-family: 'Cinzel', serif;
+    font-size: 0.5rem;
+    letter-spacing: 0.12em;
+    color: var(--muted);
+    text-transform: uppercase;
+    line-height: 1.9;
+  }
+
+  .back-contact a { color: var(--muted); text-decoration: none; }
+
+  .qr-image-wrap {
+    width: 130px;
+    height: 130px;
+    background: white;
+    border: 1px solid rgba(201,168,76,0.3);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 7px;
+  }
+
+  .qr-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .qr-label {
+    font-family: 'Cinzel', serif;
+    font-size: 0.56rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: center;
+  }
+
+  /* ─── PRINT STYLES ─── */
+  @media print {
+    @page { size: letter; margin: 0.5in; }
+    body { background: white; padding: 0.5in; gap: 0.5in; }
+    .print-note { display: none; }
+    .card { box-shadow: none; border: 1px solid #ccc; }
+
+    .front {
+      background: var(--deep) !important;
+      color: var(--parchment) !important;
+    }
+
+    .back {
+      background: var(--parchment) !important;
+      color: var(--text) !important;
+    }
+
+    .front-rainbow-top,
+    .front-rainbow-bottom,
+    .back-rainbow-top,
+    .back-rainbow-bottom,
+    .front-glow,
+    .front-divider .line {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+    }
+  }
+
+  @media (max-width: 700px) {
+    .card { width: 100%; height: auto; }
+    .back { flex-direction: column; }
+    .back-right { width: 100%; border-top: 1px solid rgba(201,168,76,0.25); border-right: none; }
+    .front-title { font-size: 2.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<div class="print-note">Print both sides · Standard business card size (3.5 × 2 in) · Enable Background graphics/colors in print dialog</div>
+
+<!-- FRONT -->
+<div class="card-wrapper">
+  <div class="card-label">Front of Card</div>
+  <div class="card front">
+    <div class="front-rainbow-top"></div>
+    <div class="front-glow"></div>
+    <div class="front-cross">✝</div>
+    <div class="front-title">Come Sit<br>With <em>Me.</em></div>
+    <div class="front-attr">— Jesus of Nazareth</div>
+    <div class="front-divider">
+      <div class="line"></div>
+      <div class="front-divider-sym">✦ ✦ ✦</div>
+      <div class="line"></div>
+    </div>
+    <div class="front-church">St. James Lutheran Church · Folsom, NJ</div>
+    <div class="front-rainbow-bottom"></div>
+  </div>
+</div>
+
+<!-- BACK -->
+<div class="card-wrapper">
+  <div class="card-label">Back of Card</div>
+  <div class="card back">
+    <div class="back-rainbow-top"></div>
+
+    <div class="back-left">
+      <div>
+        <div class="back-church-name">St. James Lutheran · Folsom, NJ</div>
+        <div class="back-title">You are already<br>beloved.</div>
+        <div class="back-verse">
+          The Spirit and the bride say, "Come." Let the one who is thirsty come.
+          <span class="back-verse-ref">Revelation 22:17</span>
+        </div>
+      </div>
+      <div class="back-contact">
+        1341 Mays Landing Rd · Folsom NJ 08037<br>
+        Sunday 10 AM · Wednesday 7 PM<br>
+        <a href="tel:6095614488">(609) 561-4488</a> · <a href="http://www.stjamesfolsom.org">stjamesfolsom.org</a>
+      </div>
+    </div>
+
+    <div class="back-right">
+      <div class="qr-image-wrap">
+        <img class="qr-image" src="./qr-code.svg" alt="QR code linking to the Come Sit With Me welcome letter">
+      </div>
+      <div class="qr-label">Scan Me</div>
+    </div>
+
+    <div class="back-rainbow-bottom"></div>
+  </div>
+</div>
+
+</body>
+</html>

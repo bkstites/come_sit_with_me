@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Business Card Print Sheet - St. James Lutheran Church</title>
+<style>
+  :root {
+    --ink: #1f1f1f;
+    --muted: #4b4b4b;
+    --paper: #ffffff;
+    --accent: #b6892d;
+    --r1: #e63946;
+    --r2: #f4a261;
+    --r3: #2a9d8f;
+    --r4: #457b9d;
+    --r5: #6a4c93;
+
+    /* Duplex calibration: tweak in small steps like 0.01in if needed. */
+    --back-shift-x: 0in;
+    --back-shift-y: -0.04in;
+  }
+
+  * {
+    box-sizing: border-box;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  body {
+    margin: 0;
+    background: #f1f1f1;
+    color: var(--ink);
+    font-family: Georgia, "Times New Roman", serif;
+    padding: 24px;
+  }
+
+  .screen-help {
+    max-width: 900px;
+    margin: 0 auto 16px;
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 12px 14px;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .screen-help strong {
+    display: block;
+    margin-bottom: 4px;
+  }
+
+  .sheet {
+    width: 7.5in;
+    height: 10in;
+    margin: 0 auto 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 3.5in);
+    grid-template-rows: repeat(5, 2in);
+    background: #fff;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+  }
+
+  .back-sheet {
+    /* Mirror card positions so front/back alignment is correct for most duplex printers. */
+    direction: rtl;
+  }
+
+  .back-sheet .card {
+    direction: ltr;
+    transform: translate(var(--back-shift-x), var(--back-shift-y));
+  }
+
+  .card {
+    width: 3.5in;
+    height: 2in;
+    border: 1px dashed #989898;
+    position: relative;
+    background: var(--paper);
+    overflow: hidden;
+  }
+
+  .sheet[aria-label="Front sheet"] .card {
+    background: #0e0b06;
+    color: #fdf6e8;
+    border-color: #5a5a5a;
+  }
+
+  .rainbow-top {
+    height: 0.08in;
+    background: linear-gradient(90deg, var(--r1), var(--r2), #f9c74f, var(--r3), var(--r4), var(--r5));
+  }
+
+  .rainbow-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 0.05in;
+    background: linear-gradient(90deg, var(--r5), var(--r4), var(--r3), #f9c74f, var(--r2), var(--r1));
+  }
+
+  .front-content {
+    padding: 0.2in 0.24in 0.12in;
+    height: calc(100% - 0.13in);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    gap: 0.06in;
+  }
+
+  .front-title {
+    font-size: 0.34in;
+    line-height: 1;
+    font-style: italic;
+    margin: 0;
+  }
+
+  .front-title em {
+    color: var(--accent);
+    font-style: italic;
+  }
+
+  .front-sub {
+    margin: 0;
+    font-size: 0.1in;
+    letter-spacing: 0.03in;
+    text-transform: uppercase;
+    color: rgba(201, 168, 76, 0.75);
+  }
+
+  .front-church {
+    margin: 0.03in 0 0;
+    font-size: 0.1in;
+    letter-spacing: 0.018in;
+    text-transform: uppercase;
+    color: rgba(253, 246, 232, 0.7);
+  }
+
+  .back-layout {
+    height: calc(100% - 0.13in);
+    display: grid;
+    grid-template-columns: 1fr 1.08in;
+  }
+
+  .back-left {
+    padding: 0.17in 0.18in 0.1in;
+    border-right: 1px solid #cfcfcf;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .back-title {
+    margin: 0 0 0.06in;
+    font-size: 0.2in;
+    font-style: italic;
+    line-height: 1.1;
+  }
+
+  .back-line {
+    margin: 0;
+    font-size: 0.092in;
+    line-height: 1.35;
+    color: #333;
+  }
+
+  .back-contact {
+    margin-top: 0.06in;
+    font-size: 0.08in;
+    line-height: 1.35;
+    color: #444;
+  }
+
+  .back-right {
+    padding: 0.16in 0.14in 0.12in;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 0.05in;
+  }
+
+  .qr {
+    width: 0.84in;
+    height: 0.84in;
+    border: 1px solid #d2d2d2;
+    background: #fff;
+    padding: 0.04in;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .qr img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+  }
+
+  .scan-text {
+    margin: 0;
+    font-size: 0.09in;
+    letter-spacing: 0.012in;
+    text-transform: uppercase;
+    color: #555;
+    text-align: center;
+    line-height: 1.2;
+  }
+
+  @page {
+    size: letter;
+    margin: 0.5in;
+  }
+
+  @media print {
+    body {
+      background: #fff;
+      padding: 0;
+      margin: 0;
+    }
+
+    .screen-help {
+      display: none;
+    }
+
+    .sheet {
+      margin: 0;
+      box-shadow: none;
+      break-after: page;
+      page-break-after: always;
+    }
+
+    .sheet:last-of-type {
+      break-after: auto;
+      page-break-after: auto;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="screen-help">
+    <strong>Print setup:</strong>
+    1) Print duplex with Flip on long edge (best for this layout). 2) Scale 100% (no fit). 3) Keep Background graphics enabled. 4) If alignment is still off, edit --back-shift-x and --back-shift-y at the top of this file.
+  </div>
+
+  <!-- PAGE 1: FRONTS -->
+  <section class="sheet" aria-label="Front sheet">
+    <article class="card">
+      <div class="rainbow-top"></div>
+      <div class="front-content">
+        <h1 class="front-title">Come Sit<br>With <em>Me.</em></h1>
+        <p class="front-sub">Jesus of Nazareth</p>
+        <p class="front-church">St. James Lutheran Church - Folsom, NJ</p>
+      </div>
+      <div class="rainbow-bottom"></div>
+    </article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="front-content"><h1 class="front-title">Come Sit<br>With <em>Me.</em></h1><p class="front-sub">Jesus of Nazareth</p><p class="front-church">St. James Lutheran Church - Folsom, NJ</p></div><div class="rainbow-bottom"></div></article>
+  </section>
+
+  <!-- PAGE 2: BACKS -->
+  <section class="sheet back-sheet" aria-label="Back sheet">
+    <article class="card">
+      <div class="rainbow-top"></div>
+      <div class="back-layout">
+        <div class="back-left">
+          <div>
+            <h2 class="back-title">You are Beloved.</h2>
+            <p class="back-line">The Spirit and the bride say, "Come."</p>
+            <p class="back-line">Let the one who is thirsty come.</p>
+            <p class="back-line">Revelation 22:17</p>
+          </div>
+          <p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p>
+        </div>
+        <div class="back-right">
+          <div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div>
+          <p class="scan-text">Scan Me</p>
+        </div>
+      </div>
+      <div class="rainbow-bottom"></div>
+    </article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+    <article class="card"><div class="rainbow-top"></div><div class="back-layout"><div class="back-left"><div><h2 class="back-title">You are Beloved.</h2><p class="back-line">The Spirit and the bride say, "Come."</p><p class="back-line">Let the one who is thirsty come.</p><p class="back-line">Revelation 22:17</p></div><p class="back-contact">1341 Mays Landing Rd, Folsom NJ 08037<br>(609) 561-4488<br>stjamesfolsom.org</p></div><div class="back-right"><div class="qr"><img src="./qr-code.svg" alt="QR code to welcome letter"></div><p class="scan-text">Scan Me</p></div></div><div class="rainbow-bottom"></div></article>
+  </section>
+</body>
+</html>
