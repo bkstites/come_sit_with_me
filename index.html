@@ -385,6 +385,55 @@
     text-decoration: none;
   }
 
+  .digital-card {
+    border: 1px solid var(--gold-light);
+    padding: 1.2rem 1.3rem;
+    background: rgba(201,168,76,0.05);
+    margin-top: 1rem;
+    text-align: center;
+  }
+
+  .digital-card-title {
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.28em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .digital-card-text {
+    font-size: 0.9rem;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 0.9rem;
+  }
+
+  .digital-card-actions {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  .digital-card-btn {
+    display: inline-block;
+    padding: 0.5rem 0.9rem;
+    border: 1px solid var(--gold);
+    color: var(--text);
+    text-decoration: none;
+    font-family: 'Cinzel', serif;
+    font-size: 0.58rem;
+    letter-spacing: 0.17em;
+    text-transform: uppercase;
+    background: rgba(201,168,76,0.08);
+  }
+
+  .digital-card-btn:hover,
+  .digital-card-btn:focus-visible {
+    background: rgba(201,168,76,0.2);
+  }
+
   .between {
     text-align: center;
     padding: 3.5rem 2rem;
@@ -493,6 +542,7 @@
   @media (max-width: 600px) {
     .card-inner { padding: 2.5rem 1.8rem 2rem; }
     .pathways { grid-template-columns: 1fr; }
+    .digital-card-actions { flex-direction: column; }
   }
   </style>
 </head>
@@ -595,6 +645,17 @@
             1341 Mays Landing Road, Folsom, NJ 08037<br>
             <a href="tel:+16095614488">(609) 561-4488</a> · <a href="https://www.stjamesfolsom.org" rel="noopener noreferrer">stjamesfolsom.org</a><br>
             Pastor Werner · <a href="tel:+16093353083">(609) 335-3083</a>
+          </div>
+        </div>
+
+        <div class="digital-card">
+          <div class="digital-card-title">Digital Business Card</div>
+          <div class="digital-card-text">
+            Save this contact to your phone, then share by iPhone NameDrop or NFC tap.
+          </div>
+          <div class="digital-card-actions">
+            <a class="digital-card-btn" href="st-james-business-card.vcf" download>Add to Contacts</a>
+            <a class="digital-card-btn" href="https://bkstites.github.io/come_sit_with_me/" rel="noopener noreferrer" target="_blank">Share This Link</a>
           </div>
         </div>
       </div>

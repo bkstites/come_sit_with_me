@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Werner;Pastor;;;
+FN:Pastor Werner
+ORG:St. James Lutheran Church
+TITLE:Pastor
+TEL;TYPE=WORK,VOICE:(609) 561-4488
+TEL;TYPE=CELL,VOICE:(609) 335-3083
+ADR;TYPE=WORK:;;1341 Mays Landing Road;Folsom;NJ;08037;USA
+URL:https://www.stjamesfolsom.org
+NOTE:Reconciling in Christ congregation. Sunday worship at 10 AM; Wednesday evenings at 7 PM. Zoom available.
+END:VCARD
