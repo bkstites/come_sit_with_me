@@ -16,9 +16,21 @@
     --r4: #457b9d;
     --r5: #6a4c93;
 
-    /* Duplex calibration: tweak in small steps like 0.01in if needed. */
-    --back-shift-x: 0in;
-    --back-shift-y: -0.04in;
+     /* Avery 28371 geometry on portrait US Letter:
+       - top margin: 0.5in
+       - side margins: 0.75in
+       - row pitch: 2in
+       - column pitch: 3.5in */
+    --template-offset-x: 0.75in;
+    --template-offset-y: 0.5in;
+
+    /* Front page compensation (printer-specific only; keep zero as baseline). */
+    --front-page-comp-x: 0in;
+    --front-page-comp-y: 0in;
+
+    /* Back page compensation (set independently from front for duplex alignment). */
+    --back-page-comp-x: 0in;
+    --back-page-comp-y: 0in;
   }
 
   * {
@@ -45,13 +57,17 @@
     line-height: 1.5;
   }
 
+  .screen-help code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  }
+
   .screen-help strong {
     display: block;
     margin-bottom: 4px;
   }
 
   .sheet {
-    width: 7.5in;
+    width: 7in;
     height: 10in;
     margin: 0 auto 20px;
     display: grid;
@@ -68,7 +84,6 @@
 
   .back-sheet .card {
     direction: ltr;
-    transform: translate(var(--back-shift-x), var(--back-shift-y));
   }
 
   .card {
@@ -211,13 +226,16 @@
   }
 
   @page {
-    size: letter;
-    margin: 0.5in;
+    size: 8.5in 11in;
+    margin: 0;
   }
 
   @media print {
     body {
       background: #fff;
+      width: 8.5in;
+      height: 11in;
+      min-height: 11in;
       padding: 0;
       margin: 0;
     }
@@ -233,6 +251,22 @@
       page-break-after: always;
     }
 
+    .front-sheet {
+      transform: translate(
+        calc(var(--template-offset-x) + var(--front-page-comp-x)),
+        calc(var(--template-offset-y) + var(--front-page-comp-y))
+      );
+      transform-origin: top left;
+    }
+
+    .back-sheet {
+      transform: translate(
+        calc(var(--template-offset-x) + var(--back-page-comp-x)),
+        calc(var(--template-offset-y) + var(--back-page-comp-y))
+      );
+      transform-origin: top left;
+    }
+
     .sheet:last-of-type {
       break-after: auto;
       page-break-after: auto;
@@ -243,11 +277,11 @@
 <body>
   <div class="screen-help">
     <strong>Print setup:</strong>
-    1) Print duplex with Flip on long edge (best for this layout). 2) Scale 100% (no fit). 3) Keep Background graphics enabled. 4) If alignment is still off, edit --back-shift-x and --back-shift-y at the top of this file.
+    Avery 28371 (2in x 3.5in, US Letter): 1) Scale 100% (Actual size, no Fit/Shrink). 2) Duplex with Flip on long edge. 3) Disable headers/footers and keep Background graphics enabled. 4) Keep <code>--template-offset-x/y</code> at 0.75in / 0.5in (Avery spec). 5) Use <code>--front-page-comp-x/y</code> and <code>--back-page-comp-x/y</code> only for printer-specific correction.
   </div>
 
   <!-- PAGE 1: FRONTS -->
-  <section class="sheet" aria-label="Front sheet">
+  <section class="sheet front-sheet" aria-label="Front sheet">
     <article class="card">
       <div class="rainbow-top"></div>
       <div class="front-content">
