@@ -176,6 +176,154 @@
     animation: bounce 2s ease-in-out infinite;
   }
 
+  .video-section {
+    padding: 0 1.5rem 4rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .video-card {
+    background: var(--parchment);
+    color: var(--text);
+    max-width: 860px;
+    width: 100%;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.55);
+    position: relative;
+  }
+
+  .video-inner {
+    padding: 2.8rem 2.2rem 2.4rem;
+    background-image:
+      radial-gradient(ellipse at top right, rgba(201,168,76,0.07) 0%, transparent 58%),
+      radial-gradient(ellipse at bottom left, rgba(201,168,76,0.05) 0%, transparent 58%);
+  }
+
+  .video-title {
+    font-size: clamp(1.9rem, 4.2vw, 2.6rem);
+    text-align: center;
+    font-style: italic;
+    font-weight: 300;
+    margin-bottom: 0.5rem;
+  }
+
+  .video-subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 0.62rem;
+    letter-spacing: 0.22em;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 1.5rem;
+  }
+
+  .video-frame {
+    aspect-ratio: 16 / 9;
+    width: 100%;
+    border: 1px solid rgba(201,168,76,0.35);
+    background:
+      linear-gradient(145deg, rgba(14,11,6,0.96), rgba(26,18,8,0.93));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: rgba(253,246,232,0.78);
+    padding: 1.2rem;
+    margin-bottom: 1.1rem;
+  }
+
+  .video-frame p {
+    max-width: 540px;
+    line-height: 1.55;
+    font-size: 1.02rem;
+  }
+
+  .video-note {
+    text-align: center;
+    font-size: 1rem;
+    line-height: 1.6;
+    color: var(--text);
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .journey-section {
+    padding: 0 1.5rem 3rem;
+    display: flex;
+    justify-content: center;
+  }
+
+  .journey-card {
+    background: var(--parchment);
+    color: var(--text);
+    max-width: 860px;
+    width: 100%;
+    box-shadow: 0 25px 70px rgba(0,0,0,0.5);
+    position: relative;
+  }
+
+  .journey-inner {
+    padding: 2.8rem 2.8rem 2.4rem;
+    background-image:
+      radial-gradient(ellipse at top right, rgba(201,168,76,0.06) 0%, transparent 58%),
+      radial-gradient(ellipse at bottom left, rgba(201,168,76,0.04) 0%, transparent 58%);
+  }
+
+  .journey-title {
+    font-size: clamp(1.8rem, 3.8vw, 2.4rem);
+    font-weight: 300;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 0.45rem;
+  }
+
+  .journey-intro {
+    text-align: center;
+    font-size: 1rem;
+    color: var(--muted);
+    margin: 0 auto 1.4rem;
+    max-width: 640px;
+    line-height: 1.45;
+  }
+
+  .journey-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+  }
+
+  .journey-step {
+    padding: 1rem 1rem 0.95rem;
+    border-left: 4px solid rgba(201,168,76,0.45);
+    background: rgba(255,255,255,0.38);
+    border-radius: 2px;
+    box-shadow: inset 0 0 0 1px rgba(201,168,76,0.12);
+  }
+
+  .journey-step:last-child {
+    border-left: 4px solid rgba(201,168,76,0.3);
+  }
+
+  .step-number {
+    font-family: 'Cinzel', serif;
+    font-size: 0.65rem;
+    letter-spacing: 0.3em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-title {
+    font-size: 1.08rem;
+    font-weight: 400;
+    margin-bottom: 0.3rem;
+  }
+
+  .step-text {
+    font-size: 0.98rem;
+    line-height: 1.5;
+    color: var(--muted);
+  }
+
   @keyframes bounce {
     0%, 100% { transform: translateY(0); }
     50% { transform: translateY(6px); }
@@ -540,8 +688,44 @@
     text-transform: uppercase;
   }
 
+  .letter-image-wrap {
+    margin: 2rem -4rem;
+    overflow: hidden;
+  }
+
+  .letter-image {
+    width: 100%;
+    max-height: 300px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    filter: sepia(0.15) brightness(0.88);
+  }
+
+  .letter-image-caption {
+    font-family: 'Cinzel', serif;
+    font-size: 0.52rem;
+    letter-spacing: 0.2em;
+    color: var(--muted);
+    text-transform: uppercase;
+    text-align: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+    margin-bottom: 2rem;
+  }
+
+  @media (max-width: 600px) {
+    .letter-image-wrap { margin: 2rem -1.8rem; }
+  }
+
   @media (max-width: 600px) {
     .card-inner { padding: 2.5rem 1.8rem 2rem; }
+    .video-inner { padding: 2.2rem 1.1rem 1.9rem; }
+    .video-frame p { font-size: 0.98rem; }
+    .journey-inner { padding: 2.1rem 1.4rem 1.9rem; }
+    .journey-intro { font-size: 0.96rem; margin-bottom: 1.1rem; }
+    .step-title { font-size: 1.02rem; }
+    .step-text { font-size: 0.96rem; }
     .pathways { grid-template-columns: 1fr; }
     .digital-card-actions { flex-direction: column; }
   }
@@ -560,10 +744,32 @@
     Come to me, all you who are weary and burdened, and I will give you rest.
     <span>Matthew 11:28</span>
   </div>
-  <a href="#welcome" class="scroll-cta" aria-label="Jump to the welcome letter">
+  <a href="#invitation-video" class="scroll-cta" aria-label="Jump to the invitation video">
     <span class="scroll-cta-text">Read on</span>
     <span class="scroll-arrow" aria-hidden="true">↓</span>
   </a>
+</section>
+
+<section class="video-section" id="invitation-video" aria-labelledby="video-invitation-title">
+  <div class="video-card">
+    <div class="card-rainbow-top" aria-hidden="true"></div>
+    <div class="video-inner">
+      <h2 class="video-title" id="video-invitation-title">Come And See</h2>
+      <div class="video-subtitle">Come Sit With Me · Jesus of Nazareth</div>
+      <div class="video-frame" role="img" aria-label="Video placeholder for the upcoming invitation film.">
+        <p>
+          Invitation video coming soon.<br>
+          This space will feature voices from St. James sharing who Jesus is to them,
+          and welcoming all who are ready to come and see.
+        </p>
+      </div>
+      <p class="video-note">
+        Bring what is on your heart. Prayer, longing, grief, gratitude, questions, or hope.
+        You are beloved, and you are welcome.
+      </p>
+    </div>
+    <div class="card-rainbow-bottom" aria-hidden="true"></div>
+  </div>
 </section>
 
 <section class="card-section" id="welcome" aria-labelledby="welcome-title">
@@ -577,14 +783,14 @@
         <div class="line"></div>
       </div>
 
-      <h2 class="card-title" id="welcome-title">You Have Always<br>Been Beloved</h2>
-      <div class="card-subtitle">A letter carried by his people · written in his name</div>
+      <h2 class="card-title" id="welcome-title">You Are Beloved</h2>
+      <div class="card-subtitle">A letter shared from people who follow Jesus · written in his name</div>
       <div class="divider" aria-hidden="true"></div>
 
       <p class="body-text">Dear friend,</p>
 
       <p class="body-text">
-        This letter comes to you from the people of St. James — but we want to be honest about where it originates. It doesn't begin with us. It begins with the one who looked at crowds the religious establishment had turned away, sat down among them, and said simply: <em>come.</em>
+        This letter comes from the people of St. James — but the invitation doesn't begin with us. It comes from Jesus of Nazareth, who saw the people that faith had turned away, sat down among them, and said: <em>come.</em>
       </p>
 
       <div class="scripture">
@@ -593,21 +799,44 @@
       </div>
 
       <p class="body-text">
-        The Bride of Christ — the Church — is meant to carry that same word into the world. And we must confess honestly: she has not always done so. Many of you were turned away. You were handed condemnation instead of communion. That was not Christ. And we are sorry for it.
+        <strong>Here is what we are inviting you to do:</strong>
       </p>
 
       <p class="body-text">
-        But here is the deeper truth we are coming to you with today: <em>the Church is incomplete without you.</em> Not simply willing to accommodate you — incomplete without you. Your voice, your story, your presence at the table is something the Body of Christ has been missing. We are not offering charity. We are confessing a poverty in ourselves that your belonging would help to heal.
+        Bring what is on your heart — a prayer, a longing, a grief, a praise, a physical act married to spiritual intention — and entrust it to God. Write it. Tell him what matters to you.
       </p>
 
+      <p class="body-text">
+        On <strong>Sunday, June 21</strong>, your prayer will be carried to God's table and lifted before him through the sharing of bread and wine — his true presence, as he commanded. We hold what you entrust with compassion, dignity, and hope. Afterward, we join for a brief ceremony of release: incense, water, and fire. What you gave to the urn is returned to God, and the ashes are kept reverently.
+      </p>
+
+      <div class="letter-image-wrap">
+        <img class="letter-image" src="https://images.unsplash.com/photo-1509726360306-3f44543aea4c?fm=jpg&q=80&w=1200&auto=format&fit=crop" alt="Incense burning in prayer" loading="lazy">
+        <div class="letter-image-caption">Incense rising before God</div>
+      </div>
+
       <div class="scripture">
-        <div class="scripture-text">There is neither Jew nor Gentile, neither slave nor free, nor is there male and female, for you are all one in Christ Jesus.</div>
-        <div class="scripture-ref">Galatians 3:28</div>
+        <div class="scripture-text">Bring all your worries and concerns to God in prayer. And the peace of God, which surpasses all understanding, will keep your hearts and minds in Christ Jesus.</div>
+        <div class="scripture-ref">Philippians 4:6-7</div>
       </div>
 
       <p class="body-text">
-        At the center of our worship is the Lord's Supper — communion. We believe, with Luther and with the ancient Church, that Christ is <em>truly and fully present</em> in the bread and the wine. Not symbolically. Not metaphorically. Present. And he reveals himself in that meal in community — when people who would not otherwise sit together break bread as one. The table is richer, the presence is fuller, when all of his beloved are gathered at it.
+        If the Church has wounded you, we are sorry. If you were told there is no room for you — that was not the Jesus who sought out the ones religion had left behind. We confess that openly. And here is what we know: <em>the Church is incomplete without you.</em> Your presence, your voice, your prayers — these things the Body of Christ has been missing.
       </p>
+
+      <div class="letter-image-wrap">
+        <img class="letter-image" src="https://upload.wikimedia.org/wikipedia/commons/5/51/Carl_Heinrich_Bloch_-_Woman_at_the_Well.jpg" alt="Christ and the Woman at the Well, by Carl Heinrich Bloch" loading="lazy" style="object-position: center 20%;">
+        <div class="letter-image-caption">Christ and the Woman at the Well · Carl Heinrich Bloch, 1865–79</div>
+      </div>
+
+      <p class="body-text">
+        You do not need to have faith figured out to come. You do not need to be whole or healed or certain. Bring what you have. Bring your questions. Bring your doubt. Bring what is true for you. Jesus says it is enough.
+      </p>
+
+      <div class="letter-image-wrap">
+        <img class="letter-image" src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Chartres_RosetteSued_122_DSC08269.jpg/1280px-Chartres_RosetteSued_122_DSC08269.jpg" alt="Rose window, Chartres Cathedral — each piece part of the whole" loading="lazy">
+        <div class="letter-image-caption">Chartres Cathedral · Each voice part of the whole</div>
+      </div>
 
       <div class="scripture">
         <div class="scripture-text">For I was hungry and you gave me something to eat, I was thirsty and you gave me something to drink, I was a stranger and you invited me in.</div>
@@ -615,11 +844,7 @@
       </div>
 
       <p class="body-text">
-        You may be carrying wounds from religion. You may have walked away from faith entirely, or held onto it quietly in the dark where no one could tell you it wasn't allowed. You may be full of questions or full of grief or simply curious what it might feel like to walk into a room where you don't have to choose between who you are and whether you belong.
-      </p>
-
-      <p class="body-text">
-        Come and see. Come weary. Come uncertain. Come exactly as you are. The table is already set. The bread is already broken. And Christ is already there — waiting for the rest of his beloved to take their place.
+        Come and sit with God. Come and meet a community that believes God still listens. Come and sit with Jesus, and with us, and know that you are beloved.
       </p>
 
       <div class="scripture">
@@ -631,7 +856,7 @@
         <div class="closing-text">
           With open hands and an open table,<br>
           <em>The People of St. James Lutheran Church</em><br><br>
-          Celebrating 175+ years of ministry<br>
+          Celebrating 178+ years of ministry<br>
           A Reconciling in Christ congregation —<br>
           where <em>all</em> means all, and the table belongs to him.
         </div>
@@ -639,7 +864,8 @@
         <div class="contact-box">
           <div class="contact-label">Worship With Us</div>
           <div class="contact-text">
-            Sunday worship at 10 AM · Wednesday evenings at 7 PM<br>
+            Sunday worship at 10 AM<br>
+            Wednesday Devotions at 7 PM<br>
             Also available via Zoom — worship from wherever you are.
           </div>
           <div class="contact-detail">
@@ -664,6 +890,34 @@
   </div>
 </section>
 
+<section class="journey-section" id="prayer-journey" aria-labelledby="journey-title">
+  <div class="journey-card">
+    <div class="card-rainbow-top" aria-hidden="true"></div>
+    <div class="journey-inner">
+      <h2 class="journey-title" id="journey-title">What Happens To Your Prayer</h2>
+      <p class="journey-intro">You are not entering a process. You are being held in prayer.</p>
+      <div class="journey-steps">
+        <div class="journey-step">
+          <div class="step-number">At Pride</div>
+          <div class="step-title">Come As You Are</div>
+          <div class="step-text">Today we ask you to place what is on your heart into words and entrust it to the urn. Prayer, grief, gratitude, longing, a quiet cry for help. You do not have to explain your heart here. In words or phrases, a sentence or a paragraph — simply bear your heart to the Lord. Your prayer rests in the urn until worship.</div>
+        </div>
+        <div class="journey-step">
+          <div class="step-number">In Worship</div>
+          <div class="step-title">Carried To The Table</div>
+          <div class="step-text">Your prayer is carried into our next worship service. As we gather at the table of communion, we lift these prayers before the Lord without naming names, honoring your privacy with tenderness and care. Even if no one else knows your story, Jesus does. In his presence, you are held with compassion, dignity, and hope.</div>
+        </div>
+        <div class="journey-step">
+          <div class="step-number">After Worship</div>
+          <div class="step-title">Released Before The Lord</div>
+          <div class="step-text">After worship, you are invited to sit with our community for a brief release rite. We gather with incense, water, and your written prayers, hold a moment of open prayer, and then release these prayers through fire to the Lord. Incense symbolizes prayer rising before God, water recalls baptism, and fire becomes the physical release of what was entrusted. After the ceremony, the ashes are returned to the urn and stored reverently.</div>
+        </div>
+      </div>
+    </div>
+    <div class="card-rainbow-bottom" aria-hidden="true"></div>
+  </div>
+</section>
+
 <div class="between" aria-hidden="true">
   <div class="between-line"></div>
   <div class="between-symbol">♪</div>
@@ -672,6 +926,7 @@
   </div>
 </div>
 
+<!-- CHOIR SECTION — hidden for now, restore by removing these comment tags
 <section class="card-section" id="choir" aria-labelledby="choir-title">
   <div class="card">
     <div class="card-rainbow-top" aria-hidden="true"></div>
@@ -778,6 +1033,7 @@
     <div class="card-rainbow-bottom" aria-hidden="true"></div>
   </div>
 </section>
+END CHOIR SECTION -->
 </main>
 
 <footer class="footer">
